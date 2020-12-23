@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ablum Data</title>
+</head>
+<body>
+<center>
+    <h1 style="color:red;background-color:wheat">{{ alb.title }}</h1>
+</center>
+<h3> Published on: {{alb.date}}</h3>
+<center>
+<img src="{{ alb.banner.url }}" width="170px" height=" 170px">
+</center>
+<h3 style="color:red;background-color:wheat;he">Songs List</h3>
+{% if songs %}
+<ol>
+    {% for song in songs %}
+    <li>{{ song.title }} : {{ song.artist }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <audio controls style="width:300px;height:20px;background-color:wheat">
+            <source src="{{ song.audio.url }}" type="audio/mpeg">
+        </audio>
+    </li>
+    <br/>
+    {% endfor %}
+</ol>
+{% endif %}
+</body>
+</html>
