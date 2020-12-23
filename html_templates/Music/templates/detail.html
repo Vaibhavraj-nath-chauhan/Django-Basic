@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+{% for i in det %}
+<h3>Details of &emsp;{{ i.title }}</h3>
+<img src="{{ i.banner }}" alt="No Image">
+<h6>Singer {{ i.singer }}</h6>
+<h6>Data Published {{ i.date }}</h6>
+{% endfor %}
+</body>
+</html>
