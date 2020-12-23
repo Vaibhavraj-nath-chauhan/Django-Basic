@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body bgcolor="pink">
+<center>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h3 style="margin-bottom:-3px">User Login</h3>
+        <small>Fill the detials</small><br/><br/>
+        {% if error %}
+        <small style="color:red">Enter Correct Details</small>
+        {% endif %}
+        <br/><br/>
+        <label>User Name</label>
+        <input type="text" placeholder="Enter User Name"  required name = "un">
+        <br/><br/>
+        <label>Password</label>
+        <input type="password" placeholder="Enter Password" required name="ps"><br/><br/>
+        <button type="submit">Login</button>
+    </form><br/><br/>
+    <a href="{% url 'register' %}"><button>Register</button></a>
+</center>
+</body>
+</html>

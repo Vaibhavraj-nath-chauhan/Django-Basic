@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Song</title>
+</head>
+<body style="margin-top:30px;background-color:#005580;color:white">
+<center>
+    {% if request.user.is_authenticated %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3 style="margin-bottom: -2px">Add New Song</h3>
+        <small>Enter The Details Below</small>
+        <br/><br/><br/>
+        <!-- Album Selection -->
+        <label style="margin-right:30px">Select Album</label>
+        <select name="album" required>
+            {% for a in alb %}
+            <option value="{{ a.id }}">{{ a.title }}</option>
+            {% endfor %}
+        </select>
+        <br/><br/>
+        <!-- Song title -->
+        <label style="margin-right:20px">Song Name</label>
+        <input type="text" required placeholder="Enter Song Name" name="title">
+        <br/><br/>
+        <!-- Artist field -->
+        <label style="margin-right:20px">Artist Name</label>
+        <input type="text" placeholder="Default is ALL" value = "ALL" required name="artist">
+        <br/><br/>
+        <!-- file location -->
+        <label style="margin-right:20px">Select Song</label>
+        <input type="file" required name="mp3">
+        <br/><br/>
+        <!-- check box-->
+        <label>Publish</label>
+        <input name="status"  vlaue ="ON" checked type="radio">
+        <label>UnPublished</label>
+        <input name="status"value = "OFF" type="radio">
+        <br/><br/>
+        <button type="submit">Add Song</button>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}"><button style="margin-top:40px" >Login</button></a>
+    {% endif %}
+
+
+
+
+</center>
+</body>
+</html>

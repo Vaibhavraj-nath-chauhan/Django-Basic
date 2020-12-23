@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ alb.title }} Album</title>
+</head>
+<body>
+<center>
+    {% if request.user.is_authenticated %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3 style="margin-bottom:-3px">Add Song</h3>
+        <small>Fill the details</small><br/><br/>
+        <label>Album</label>
+        <select name="opt">
+            <option value="{{ alb.id }}">{{ alb.title }}</option>
+        </select>
+        <br/><br/>
+        <label>Title</label>
+        <input name="title" type="text" required placeholder="Song name">
+        <br/><br/>
+        <label>Artist</label>
+        <input name="artist" type="text" required placeholder="Artist name" value="ALL">
+        <br/><br/>
+        <label>Song File</label>
+        <input name="mp3" type="file" required >
+        <!-- status -->
+        <br/><br/>
+        <label>Published</label>
+        <input type="radio" checked name="PU">
+        <label>UnPublished</label>
+        <input type="radio" name="PU">
+        <br/><br/>
+        <button type="submit">Add</button>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}"><button style="margin-top:40px">Login</button></a>
+    {% endif %}
+</center>
+</body>
+</html>

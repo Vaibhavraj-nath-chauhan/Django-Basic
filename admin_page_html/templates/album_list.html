@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album List</title>
+</head>
+<body style="background:gray" >
+<center>
+    <h1>Album List</h1><br/><br/>
+</center>
+
+<ol style="color:yellow">
+    {% for alb in album%}
+    <li>
+        {{ alb.title }}
+        <a href="{% url 'alb_data' alb.id %}" target="_blank" style="padding-left:30px">
+            <button>More</button>
+        </a>
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+        <a href="{% url 'delete' alb.id %}">
+            <img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png" style="width:25px;padding-left:20px">
+        </a>
+        <a href="{% url 'edit' alb.id %}">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/30px-OOjs_UI_icon_edit-ltr-progressive.svg.png" style="width:25px;padding-left:20px">
+        </a>
+        {% endif %}
+    </li><br/>
+    {% endfor %}
+</ol>
+<center>
+    {% if request.user.is_authenticated %}
+    <div >
+            <a href="{% url 'add' %}">
+                <button>Add Album</button>
+            </a>
+            <a style="padding-left:10px" href="{% url 'song' %}">
+                <button>Add Song</button>
+            </a>
+            <a  style="padding-left:10px"  href="{% url 'logout' %}"><button>Logout</button></a>
+    </div>
+
+    {% else %}
+    <a href="{% url 'login' %}"><button>Login</button></a>
+    <a href="{% url 'register' %}"><button>Register</button></a>
+    {% endif %}
+</center>
+</body>
+</html>

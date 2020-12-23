@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album Data</title>
+</head>
+<body>
+<center>
+<h1 style="background-color:gray;color:yellow">{{ album.title }}</h1>
+</center>
+<h4>Published on : {{ album.date }}</h4>
+{% if request.user.is_authenticated %}
+<a href="{% url 'add_song' album.id %}"><button>Add More</button></a>
+<a href="{% url 'album' %}"><button>Album</button></a>
+{% else %}
+<a href="{% url 'login' %}"><button>Login</button></a>
+{% endif %}
+<center>
+    <img style="width:300px;height:300px" src="{{ album.banner.url }}">
+</center>
+<h3 style="background-color:gray;color:yellow;height:30px;width:100px">Song List</h3>
+{% if song %}
+<ol>
+    {% for sn in song %}
+    <li>
+        {{sn.title}} : {{ sn.artist }}
+        <audio controls style="width:300px;height:20px;padding-left:30px">
+            <source src="{{ sn.mp3.url }}" type="audio/mpeg">
+        </audio>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'del' sn.id %}">
+            <img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png" style="width:25px;padding-left:20px">
+        </a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ol>
+{% endif %}
+</body>
+</html>

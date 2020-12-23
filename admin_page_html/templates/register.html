@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<center>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3 style="margin-bottom:-3px">Register</h3>
+        <small>Enter Details</small>
+        <br/><br/>
+        <!-- un -->
+        <label>Full Name</label><br/>
+        <input type="text" name="name" required placeholder="Enter Your name"><br/><br/>
+        <label>Email</label><br/>
+        <input type="email" name="email" required placeholder="enter email"><br/><br/>
+        <label>User Name</label><br/>
+        <input type="text" name="un"  required placeholder="Enter Username"><br/><br/>
+        <label>Password</label><br/>
+        <input type="password" name="ps"  required placeholder="Enter password"><br/><br/>
+        <button type="submit">Register</button>
+    </form>
+</center>
+</body>
+</html>

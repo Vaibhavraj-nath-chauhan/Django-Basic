@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Album</title>
+</head>
+<body style="background-color:gray">
+
+<center>
+    {% if request.user.is_authenticated %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3 style="margin-bottom: -5px">Add New Album</h3>
+        <small>Enter Required details</small><br/><br/>
+        <label>Title</label>
+        <input type="text" required name="title" placeholder="Enter Album Title">
+        <br/><br/>
+        <!--File Field-->
+        <label>Banner</label>
+        <input type="file" required name="banner" placeholder="Enter Album Profile">
+        <br/><br/>
+        <!--Status-->
+        <label>Publish</label>
+        <input name="PU" value="ON" checked type="radio">
+
+        <label>UnPublish</label>
+        <input name="PU" value="OFF" type="radio">
+        <!--Summit bution-->
+        <br/><br/>
+        <button type="submit">Add Album</button>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}"><button style="margin-top:40px" >Login</button></a>
+    {% endif %}
+</center>
+
+</body>
+</html>
